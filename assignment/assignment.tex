@@ -1,0 +1,191 @@
+% !TeX program = xelatex
+% !TeX encoding = UTF-8
+\documentclass{article}
+\usepackage[paperwidth=595.3pt,paperheight=841.9pt,left=85.05pt,right=42.5pt,top=7.1pt,bottom=21.3pt,nohead,nofoot]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}[Ligatures=TeXOff]
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+\parskip=0pt \parindent=0pt \lineskip=0pt \normallineskip=0pt \topskip=0pt
+\frenchspacing \sloppy \raggedbottom
+\hyphenpenalty=10000 \hbadness=10000
+
+\newdimen\wL \newdimen\wR \newdimen\wB \newdimen\wA \newdimen\wBd \newdimen\wX
+\newcommand{\wcenter}{\def\walign{c}}
+\newcommand{\wright}{\def\walign{r}}
+\newcommand{\wjustify}{\def\walign{j}}
+\newcommand{\wind}[3]{\wL=#1 \wR=#2 \parindent=#3 }
+\newcommand{\wspace}[2]{\wB=#1 \wA=#2 }
+\newcommand{\wrule}[1]{\wBd=#1 }
+\newcommand{\wsz}[2]{\fontsize{#1}{#2}\selectfont
+  \def\wextra{\dimexpr #2pt-1.15\dimexpr #1pt\relax\relax}%
+  \def\wstrut{\vrule width 0pt height 0.93\dimexpr #1pt\relax depth \dimexpr #2pt-0.93\dimexpr #1pt\relax\relax}}
+\newcommand{\wfix}{\spaceskip=\fontdimen2\font \if\walign j\advance\spaceskip 0pt plus \fontdimen3\font \fi}
+\makeatletter
+\newenvironment{wpar}[1][]{%
+  \par \wL=0pt \wR=0pt \wB=0pt \wA=0pt \wBd=0pt \parindent=0pt \def\walign{l}#1%
+  \vskip\wB
+  \leftskip=\wL \rightskip=\wR \parfillskip=0pt plus 1fil
+  \if\walign l\advance\rightskip 0pt plus 1fil \fi
+  \if\walign c\advance\leftskip 0pt plus 1fil \advance\rightskip 0pt plus 1fil \parfillskip=0pt \fi
+  \if\walign r\advance\leftskip 0pt plus 1fil \parfillskip=0pt \fi
+  \wfix\@ifnextchar\wstretch{}{\leavevmode\wstrut\ignorespaces}%
+}{%
+  \ifhmode\unskip\wstrut\fi\par\nointerlineskip
+  \ifdim\wBd>0pt \vskip\dimexpr1pt-\wextra\relax
+    \moveright\wL\vbox{\hrule height\wBd width\dimexpr\hsize-\wL-\wR\relax}\nointerlineskip\vskip\wextra\fi
+  \vskip\wA
+}
+\makeatother
+\newcommand{\пусто}[1][]{\begin{wpar}[#1]\mbox{}\end{wpar}} %
+\newcount\wN
+\newcommand{\wspaces}[1]{\wN=#1 \loop\ifnum\wN>0 \hskip\spaceskip \advance\wN by -1 \repeat}
+\renewcommand{\ULthickness}{0.05em}
+\newcommand{\wul}[1]{{\ULdepth=0.16em \uline{#1}}}
+\newcommand{\wulp}[1]{\expandafter\wul\expandafter{#1}}
+\makeatletter
+\newcommand{\wsmall}[1]{\fontsize{0.58\dimexpr\f@size pt\relax}{0pt}\selectfont\wfix #1}
+\makeatother
+\newcommand{\wsup}[1]{\raisebox{0.33em}{\wsmall{#1}}}
+\newcommand{\wsub}[1]{\raisebox{-0.08em}{\wsmall{#1}}}
+\newcommand{\wsize}[2]{{\fontsize{#1}{#1}\selectfont\wfix #2}}
+\newcommand{\wcolor}[2]{\textcolor[HTML]{#1}{#2}}
+\newcommand{\wfont}[2]{{\fontspec{#1}#2}}
+\newcommand{\wdash}[2][\_]{\wN=#2 \wX=0pt \setbox0\hbox{\_}%
+  \loop\ifnum\wN>0 \advance\wX\wd0
+    \ifdim\wX>\dimexpr\hsize-\wL-\wR\relax \break \wX=\wd0 \fi
+    #1\advance\wN by -1 \repeat}
+\newcommand{\wstretch}[1]{%
+  \setbox2\vbox{\leavevmode\wstrut #1\unskip\par \setbox0\lastbox \nointerlineskip
+    \hbox to\hsize{\unhbox0 \unskip\unskip\unpenalty\hskip\rightskip}\global\wX=\prevdepth}%
+  \unvbox2 \prevdepth=\wX \noindent}
+\newdimen\wtabstop \wtabstop=35.4pt
+\newcount\wT
+\newcommand{\wtab}[1]{%
+  \setbox0\hbox{#1}\wX=\dimexpr\wd0+\wL+\parindent\relax
+  \ifdim\wX<\wL \wX=\dimexpr\wL-\wX\relax %
+  \else \wT=\wX \divide\wT by \wtabstop \advance\wT by 1 \wX=\dimexpr\wT\wtabstop-\wX\relax \fi
+  \unhbox0\hskip\wX\relax}
+\newcommand{\wcap}[3][13.8pt]{\setbox0\hbox{#2}%
+  \rlap{\raisebox{-#1}[0pt][0pt]{\hbox to\wd0{\hss#3\hss}}}\unhbox0}
+\newenvironment{wtable}[1]{\par\nointerlineskip\noindent\hbox to\linewidth\bgroup\hskip0pt\relax
+  \setlength{\tabcolsep}{5.4pt}\renewcommand{\arraystretch}{0}\begin{tabular}{#1}}%
+  {\end{tabular}\hss\egroup\par\nointerlineskip}
+\newcommand{\wcell}[2]{\parbox[t]{\dimexpr #1-10.8pt\relax}{#2}}
+\newcommand{\wrowheight}[1]{\vrule width 0pt depth #1}
+\newcommand{\wlabel}[2]{\makebox[#1][l]{#2}}
+\newsavebox{\wboxbox}
+\newenvironment{wbox}[1]{\par\nointerlineskip\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.5pt}%
+  \noindent\hskip\dimexpr#1-4.5pt\relax
+  \begin{lrbox}{\wboxbox}\hskip4pt\begin{minipage}{\dimexpr\linewidth-#1\relax}\vskip1pt}%
+  {\vskip1pt\end{minipage}\end{lrbox}\fbox{\usebox{\wboxbox}}\par\nointerlineskip}
+
+\newcommand{\Исполнитель}{Иванов Иван Иванович}
+\newcommand{\Руководитель}{Петров Пётр Петрович}
+\newcommand{\Тема}{Производственная практика, Преддипломная}
+\newcommand{\ВидПрактики}{Производственная практика}
+\newcommand{\ТипПрактики}{Производственная практика, Преддипломная}
+\newcommand{\Место}{Департамент математики, механики и компьютерных наук ФГАОУ ВО УрФУ ИЕНиМ}
+\newcommand{\Институт}{ИЕНиМ}
+\newcommand{\Кафедра}{школы бакалавриата (школа)}
+\newcommand{\Код}{10.05.01}
+\newcommand{\Специальность}{Компьютерная безопасность}
+\newcommand{\Программа}{10.05.01/22.01 - Математические методы защиты информации}
+\newcommand{\Группа}{МЕН-123456}
+\newcommand{\Год}{2026}
+\newcommand{\Начало}{14.09.\Год{}г.}
+\newcommand{\Конец}{20.12.\Год{}г.}
+\newcommand{\СдачаС}{11.12.\Год{}г.}
+\newcommand{\СдачаПо}{14.12.\Год{}г.}
+\newcommand{\Замечания}{Нет предложений и замечаний}
+
+\makeatletter
+\def\w@short#1 #2#3 #4#5\relax{#1 #2.#4.}
+\newcommand{\Кратко}[1]{\edef\w@fio{#1}%
+  \ifx\w@fio\empty\else\expandafter\w@short\w@fio\relax\fi}
+\makeatother
+
+\begin{document}
+\begin{wpar}[\wcenter\wsz{9}{10.35}]\textbf{Министерство науки и высшего образования Российской Федерации}\end{wpar}
+\begin{wpar}[\wcenter\wsz{9}{10.35}]\textbf{ФГАОУ ВО «УрФУ имени первого Президента России Б.Н. Ельцина»}\end{wpar}
+\пусто[\wsz{14}{16.10}]
+
+\begin{wtable}{ll}
+\wcell{239.25pt}{%
+\begin{wpar}[\wsz{14}{16.10}]СОГЛАСОВАНО\wspaces{15}предприятие\end{wpar}
+\begin{wpar}[\wsz{14}{16.10}]«\wspaces{3}» \_\_\_\_\_\_\_ 202\_\end{wpar}}
+&
+\wcell{239.3pt}{%
+\begin{wpar}[\wsz{14}{16.10}]СОГЛАСОВАНО\end{wpar}
+\begin{wpar}[\wsz{14}{16.10}]\wspaces{1}УрФУ\end{wpar}
+\begin{wpar}[\wsz{14}{16.10}]«\wspaces{3}» \_\_\_\_\_\_\_ 202\_\end{wpar}}\\
+\wcell{239.25pt}{%
+\begin{wpar}[\wsz{11}{12.65}]\wsize{10}{Ответственный за практику на предприятии }\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_}{\wsup{Подпись}}\wspaces{14}\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{расшифровка подписи}}\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\пусто[\wsz{10}{13.22}]}
+&
+\wcell{239.3pt}{%
+\begin{wpar}[\wsz{10}{13.22}]Ответственный за практику/РОП\end{wpar}
+\begin{wpar}[\wsz{11}{12.65}]\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_}{\wsup{Подпись}}\wspaces{19}\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{расшифровка подписи}}\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\пусто[\wsz{10}{13.22}]}\\
+\end{wtable}
+
+\пусто[\wsz{13}{14.95}]
+\begin{wpar}[\wsz{11}{12.65}]Институт \wulp{\Институт}\wspaces{2}Группа \wulp{\Группа} Кафедра \wulp{\Кафедра}\end{wpar}
+\begin{wpar}[\wsz{11}{12.65}]Код, наименование\wspaces{2}направления \wulp{\Код}\wul{-}\wulp{\Специальность}\end{wpar}
+\begin{wpar}[\wsz{11}{12.65}]Наименование образовательной программы/Наименование магистерской программы \wulp{\Программа}\end{wpar}
+\begin{wpar}[\wcenter\wsz{14}{16.10}]\textbf{ИНДИВИДУАЛЬНОЕ ЗАДАНИЕ}\end{wpar}
+\begin{wpar}[\wcenter\wsz{11}{12.65}]На учебную, производственную (преддипломную) практику студента\end{wpar}
+\begin{wpar}[\wcenter\wrule{1.5pt}\wsz{14}{16.10}]\Исполнитель\end{wpar}
+\begin{wpar}[\wcenter\wsz{8}{9.20}](фамилия, имя, отчество)\end{wpar}
+\begin{wpar}[\wjustify\wrule{1.5pt}\wsz{11}{12.65}]1. Тема задания на практику \wul{"}\wulp{\Тема}\wul{"}\end{wpar}
+\begin{wpar}[\wjustify\wsz{11}{12.65}]2. Срок практики с \wulp{\Начало} по \wulp{\Конец} Срок сдачи студентом отчета c \wulp{\СдачаС} по \wulp{\СдачаПо}\end{wpar}
+\begin{wpar}[\wjustify\wsz{11}{12.65}]3. Место прохождения практики ДИСТАНЦИОННО \wulp{\Место}\end{wpar}
+\begin{wpar}[\wjustify\wsz{11}{12.65}]4. Вид практики \ВидПрактики\end{wpar}
+\begin{wpar}[\wjustify\wsz{11}{12.65}]5. Тип практики \ТипПрактики\end{wpar}
+\begin{wpar}[\wjustify\wsz{11}{12.65}]6. Содержание отчета \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\end{wpar}
+\begin{wpar}[\wcenter\wsz{14}{16.10}]\textbf{Рабочий график (план) проведения практики}\end{wpar}
+
+\begin{wtable}{|l|l|l|l|}\hline
+\wcell{71.7pt}{\begin{wpar}[\wcenter\wsz{8}{9.20}]\textit{\textbf{Этапы практики}}\end{wpar}}
+&
+\wcell{239.5pt}{\begin{wpar}[\wcenter\wsz{9}{10.35}]\textit{\textbf{Наименование\wspaces{2}работ студента}}\end{wpar}}
+&
+\wcell{64.85pt}{\begin{wpar}[\wcenter\wsz{9}{10.35}]\textit{\textbf{Срок}}\end{wpar}}
+&
+\wcell{100pt}{\begin{wpar}[\wcenter\wsz{9}{10.35}]\textit{\textbf{Примечание}}\end{wpar}}\\\hline
+\wcell{71.7pt}{\begin{wpar}[\wcenter\wsz{8}{9.20}]организационный\end{wpar}}\wrowheight{41.9pt}
+&
+&
+\wcell{64.85pt}{\пусто[\wcenter\wsz{11}{12.65}]}
+&
+\wcell{100pt}{\пусто[\wjustify\wsz{14}{16.10}]}\\\hline
+\wcell{71.7pt}{\begin{wpar}[\wcenter\wsz{8}{9.20}]основной\end{wpar}}
+&
+&
+\wcell{64.85pt}{\пусто[\wcenter\wsz{11}{12.65}]}
+&
+\wcell{100pt}{\пусто[\wjustify\wsz{14}{16.10}]}\\\hline
+\wcell{71.7pt}{\begin{wpar}[\wcenter\wsz{8}{9.20}]заключительный\end{wpar}}
+&
+&
+\wcell{64.85pt}{\пусто[\wcenter\wsz{11}{12.65}]}
+&
+\wcell{100pt}{\пусто[\wjustify\wsz{14}{16.10}]}\\\hline
+\end{wtable}
+
+\begin{wpar}[\wsz{11}{12.65}]Содержание практики и планируемые результаты практики согласованы с руководителем практики от профильной организации\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\begin{wpar}[\wsz{11}{12.65}]Руководитель от УрФУ\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{Подпись}}\wspaces{8}\wspaces{4}\wcap[12.65pt]{\wulp{\Руководитель}}{\wsup{расшифровка подписи}}\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\begin{wpar}[\wsz{11}{12.65}]Руководитель от предприятия (организации)\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{Подпись}}\wspaces{6}\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{расшифровка подписи}}\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\begin{wpar}[\wsz{11}{12.65}]Задание принял к исполнению (студент)\wcap[12.65pt]{\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsup{Подпись}}\wspaces{16}\wspaces{3}\wcap[12.65pt]{\wulp{\Исполнитель}}{\wsup{расшифровка подписи}}\end{wpar}
+\пусто[\wsz{11}{12.65}]
+\пусто[\wsz{11}{12.65}]
+\пусто[\wsz{11}{12.65}]
+\end{document}
