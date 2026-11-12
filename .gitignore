@@ -1,4 +1,3 @@
-# вспомогательные файлы LaTeX
 *.aux
 *.log
 *.out
@@ -10,6 +9,5 @@
 *.fls
 *.fdb_latexmk
 
-# исходники в docx и собранные pdf
 *.docx
 *.pdf
