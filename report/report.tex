@@ -147,10 +147,10 @@
 \newcommand*{\l@wsub}[2]{\@dottedtocline{2}{14pt}{0pt}{#1}{#2}}
 
 \newcommand{\Раздел}[1]{%
-  \clearpage \refstepcounter{wsec}%
-  \addcontentsline{toc}{wsec}{\arabic{wsec} \MakeUppercase{#1}}%
-  \begin{wpar}[\wcenter\wтекст\wspace{0pt}{24.15pt}]%
-  \textbf{\arabic{wsec} \MakeUppercase{#1}}\end{wpar}}
+  \par\refstepcounter{wsec}%
+  \addcontentsline{toc}{wsec}{\arabic{wsec} #1}%
+  \begin{wpar}[\wind{0pt}{0pt}{\Абзац}\wтекст\wspace{24.15pt}{0pt}]%
+  \textbf{\arabic{wsec}\ #1}\end{wpar}}
 \newcommand{\Подраздел}[1]{%
   \refstepcounter{wsub}%
   \addcontentsline{toc}{wsub}{\thewsub\ #1}%
@@ -188,9 +188,9 @@
 
 \newcommand{\Таблица}[1]{%
   \par\refstepcounter{wtab}%
-  \begin{wpar}[\wтекст\wspace{24.15pt}{0pt}]Таблица \thewtab{} \Тире{} #1\end{wpar}}
+  \begin{wpar}[\wподпись\wspace{0pt}{13.8pt}]Таблица \thewtab{} \Тире{} #1\end{wpar}}
 \newcommand{\ПродолжениеТаблицы}{%
-  \begin{wpar}[\wтекст]Продолжение таблицы \thewtab\end{wpar}}
+  \begin{wpar}[\wподпись]Продолжение таблицы \thewtab\end{wpar}}
 \newenvironment{таблица}[1]{\Таблица{#1}\par\wподпись}{\par\vskip24.15pt}
 
 \newcommand{\Примечание}[1]{\par Примечание \Тире{} #1\par}
