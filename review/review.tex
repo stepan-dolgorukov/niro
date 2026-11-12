@@ -71,6 +71,9 @@
   \unhbox0\hskip\wX\relax}
 \newcommand{\wcap}[3][13.8pt]{\setbox0\hbox{#2}%
   \rlap{\raisebox{-#1}[0pt][0pt]{\hbox to\wd0{\hss#3\hss}}}\unhbox0}
+\newcommand{\wfield}[1]{%
+  \setbox0\hbox{#1}%
+  \wcap{\hbox{\wul{\phantom{\copy0}}}}{\wsub{#1}}}
 \newenvironment{wtable}[1]{\par\nointerlineskip\noindent\hbox to\linewidth\bgroup\hskip0pt\relax
   \setlength{\tabcolsep}{5.4pt}\renewcommand{\arraystretch}{0}\begin{tabular}{#1}}%
   {\end{tabular}\hss\egroup\par\nointerlineskip}
@@ -118,23 +121,23 @@
 \пусто[\wjustify\wsz{12}{20.70}]
 \begin{wpar}[\wsz{12}{20.70}]с \Начало{} по \Конец\end{wpar}
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wjustify\wsz{12}{20.70}]\wstretch{Студент(ка) \Исполнитель{} группы \Группа{} института \Институт{} за время прохождения практики осуществил(а) следующие мероприятия}\wdash[\wul{\_}]{308}\end{wpar}
-\begin{wpar}[\wsz{12}{20.70}]В период практики студент(ка)\break \wdash[\wul{\_}]{385}\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]\wstretch{Студент(ка) \Исполнитель{} группы \Группа{} института \Институт{} за время прохождения практики осуществил(а) следующие мероприятия}\wdash[\wul{\phantom{\_}}]{308}\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]В период практики студент(ка)\break \wdash[\wul{\phantom{\_}}]{385}\end{wpar}
 \begin{wpar}[\wcenter\wsz{12}{20.70}]\wsize{8}{(краткая характеристика уровня подготовки и отношения практиканта к работе)}\end{wpar}
 \пусто[\wjustify\wsz{12}{20.70}]
 \begin{wpar}[\wjustify\wrule{1.5pt}\wsz{12}{20.70}]\textbf{Ответить на вопросы}\end{wpar}
-\begin{wpar}[\wsz{12}{13.80}]1.Студент на время практики~был трудоустроен?\wspaces{3}\wcap{\wul{\_\_\_\_\_}}{\wsub{(да,нет)}}\wspaces{3}\wcap{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}{\wsub{(указать должность)}}\end{wpar}
+\begin{wpar}[\wsz{12}{13.80}]1.Студент на время практики~был трудоустроен?\wspaces{3}\wfield{(да,нет)}\wspaces{3}\wfield{(указать должность)}\end{wpar}
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wsz{12}{13.80}]2.Студенту предложено пройти следующую практику на предприятии (в организации)? \wcap{\wul{\_\_\_\_\_}}{\wsub{(да,нет)}}\end{wpar}
+\begin{wpar}[\wsz{12}{13.80}]2.Студенту предложено пройти следующую практику на предприятии (в организации)? \wfield{(да,нет)}\end{wpar}
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wsz{12}{13.80}]3. Студенту предложено трудоустройство после завершения обучения \wcap{\wul{\_\_\_\_\_}}{\wsub{(да,нет)}}\end{wpar}
+\begin{wpar}[\wsz{12}{13.80}]3. Студенту предложено трудоустройство после завершения обучения \wfield{(да,нет)}\end{wpar}
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wsz{12}{13.80}]4. Предложения и замечания от организации по теоретической и практической подготовке студентов.\wspaces{2}\wcap{\wulp{\Замечания}}{\wsub{( В свободной форме)}}\end{wpar}
+\begin{wpar}[\wsz{12}{13.80}]4. Предложения и замечания от организации по теоретической и практической подготовке студентов.\wspaces{2}\wcap{\wulp{\Замечания}}{\wsub{(В свободной форме)}}\end{wpar}
 \пусто[\wsz{12}{13.80}]
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wsz{12}{20.70}]Оценка за практику \wul{\_\_\_\_\_\_\_}\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]Оценка за практику \hbox{\wul{\phantom{\_\_\_\_\_\_\_}}}\end{wpar}
 \begin{wpar}[\wsz{12}{20.70}]«\_\_\_\_\_\_\_\_\_\_»\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 20\_\_\_\_г.\end{wpar}
-\begin{wpar}[\wsz{12}{20.70}]Руководитель организации\wspaces{61}(подпись, \wcolor{FF0000}{печать})\_\_\_\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]Руководитель организации\wspaces{61}(подпись, печать)\_\_\_\end{wpar}
 \begin{wpar}[\wsz{12}{20.70}]\wtab{\wtab{Руководитель практики от организации\wspaces{22}}}\wspaces{1}(подпись)\_\_\_\_\_\_\_\_\_\_\end{wpar}
 \пусто[\wspace{0pt}{10pt}\wsz{12}{15.87}]
 \end{document}
