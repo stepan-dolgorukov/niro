@@ -19,8 +19,12 @@
         docs=("$@")
         [ $# -eq 0 ] && docs=(${nixpkgs.lib.escapeShellArgs docs})
         for doc in "''${docs[@]}"; do
+          src="''${doc%.tex}.tex"
+          dir="''${src%/*}"
+          [ "''${dir}" = "''${src}" ] && dir="."
+          base="''${src##*/}"
           for pass in 1 2; do
-            ${tex}/bin/xelatex -interaction=nonstopmode -halt-on-error "''${doc%.tex}.tex"
+            ( cd "''${dir}" && ${tex}/bin/xelatex -interaction=nonstopmode -halt-on-error "''${base}" )
           done
         done
       '';
