@@ -73,7 +73,7 @@
   \rlap{\raisebox{-#1}[0pt][0pt]{\hbox to\wd0{\hss#3\hss}}}\unhbox0}
 \newcommand{\wfield}[1]{%
   \setbox0\hbox{#1}%
-  \wcap{\hbox{\wul{\phantom{\copy0}}}}{\wsub{#1}}}
+  \wcap{\wul{\_}}{\wsub{#1}}}
 \newenvironment{wtable}[1]{\par\nointerlineskip\noindent\hbox to\linewidth\bgroup\hskip0pt\relax
   \setlength{\tabcolsep}{5.4pt}\renewcommand{\arraystretch}{0}\begin{tabular}{#1}}%
   {\end{tabular}\hss\egroup\par\nointerlineskip}
