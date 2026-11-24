@@ -138,24 +138,23 @@
 \newcommand{\Элемент}{\@ifstar{\w@elem{0}}{\w@elem{1}}}
 \newcommand{\w@elem}[2]{%
   \clearpage
-  \ifnum#1>0 \addcontentsline{toc}{wel}{\MakeUppercase{#2}}\fi
-  \begin{wpar}[\wcenter\wтекст\wspace{0pt}{24.15pt}]%
-  \textbf{\MakeUppercase{#2}}\end{wpar}}
+  \ifnum#1>0 \addcontentsline{toc}{wel}{#2}\fi
+  {\centering\bfseries #2\par}\nobreak}
 \newcommand{\Содержание}{\Элемент*{Содержание}\@starttoc{toc}}
 \newcommand*{\l@wel}[2]{\@dottedtocline{1}{0pt}{0pt}{#1}{#2}}
 \newcommand*{\l@wsec}[2]{\@dottedtocline{1}{0pt}{0pt}{#1}{#2}}
 \newcommand*{\l@wsub}[2]{\@dottedtocline{2}{14pt}{0pt}{#1}{#2}}
 
 \newcommand{\Раздел}[1]{%
-  \clearpage \refstepcounter{wsec}%
-  \addcontentsline{toc}{wsec}{\arabic{wsec} \MakeUppercase{#1}}%
-  \begin{wpar}[\wcenter\wтекст\wspace{0pt}{24.15pt}]%
-  \textbf{\arabic{wsec} \MakeUppercase{#1}}\end{wpar}}
+  \clearpage\stepcounter{wsec}%
+  \textbf{#1}%
+  \addcontentsline{toc}{wsec}{#1}%
+  \par\nobreak}
 \newcommand{\Подраздел}[1]{%
-  \refstepcounter{wsub}%
-  \addcontentsline{toc}{wsub}{\thewsub\ #1}%
-  \begin{wpar}[\wind{0pt}{0pt}{\Абзац}\wтекст\wspace{24.15pt}{0pt}]%
-  \textbf{\thewsub\ #1}\end{wpar}}
+  \par\stepcounter{wsub}%
+  \textbf{#1}%
+  \addcontentsline{toc}{wsub}{#1}%
+  \par\nobreak}
 \newcommand{\Пункт}{\par\refstepcounter{wit}\thewit\nobreakspace}
 
 \newcommand{\w@enumlabel}{%
@@ -273,9 +272,12 @@
 \Элемент{Введение}
 Оценка современного состояния решаемого вопроса, основание и исходные данные
 для разработки темы, обоснование необходимости проведения работы. Объект
-и предмет исследования, цель работы и задачи.
+и предмет исследования, цель работы.
 
-\Раздел{Наименование первого раздела}
+\Раздел{Постановка задачи}
+Исходные данные, задачи практики и требования к ожидаемому результату.
+
+\Раздел{Ход выполнения работы}
 Текст раздела.
 
 \Подраздел{Наименование подраздела}
