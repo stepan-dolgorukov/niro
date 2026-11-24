@@ -73,7 +73,9 @@
   \rlap{\raisebox{-#1}[0pt][0pt]{\hbox to\wd0{\hss#3\hss}}}\unhbox0}
 \newcommand{\wfield}[1]{%
   \setbox0\hbox{#1}%
-  \wcap{\wul{\_}}{\wsub{#1}}}
+  \wcap{\hbox{\wul{\phantom{\copy0}}}}{\wsub{#1}}}
+\newcommand{\ПолеПодписи}{\makebox[35mm]{\hrulefill}}
+\newcommand{\ПояснениеПодписи}[1]{\makebox[35mm]{\wsize{11}{\wsup{\textbf{#1}}}}}
 \newenvironment{wtable}[1]{\par\nointerlineskip\noindent\hbox to\linewidth\bgroup\hskip0pt\relax
   \setlength{\tabcolsep}{5.4pt}\renewcommand{\arraystretch}{0}\begin{tabular}{#1}}%
   {\end{tabular}\hss\egroup\par\nointerlineskip}
@@ -114,14 +116,14 @@
 \begin{document}
 \begin{wpar}[\wcenter\wsz{12}{13.80}]ОТЗЫВ\end{wpar}
 \пусто[\wjustify\wsz{12}{13.80}]
-\begin{wpar}[\wjustify\wsz{12}{20.70}]ФИО \Исполнитель,\end{wpar}
-\begin{wpar}[\wjustify\wsz{12}{20.70}]Вид практики: \ВидПрактики\end{wpar}
-\begin{wpar}[\wjustify\wsz{12}{20.70}]Тип практики: \ТипПрактики\end{wpar}
-\begin{wpar}[\wjustify\wsz{12}{20.70}]Организация:\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]ФИО \wulp{\Исполнитель},\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]Вид практики: \wulp{\ВидПрактики}\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]Тип практики: \wulp{\ТипПрактики}\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]Организация: \underline{\hspace{60mm}}\end{wpar}
 \пусто[\wjustify\wsz{12}{20.70}]
-\begin{wpar}[\wsz{12}{20.70}]с \Начало{} по \Конец\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]с \wulp{\Начало} по \wulp{\Конец}\end{wpar}
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wjustify\wsz{12}{20.70}]\wstretch{Студент(ка) \Исполнитель{} группы \Группа{} института \Институт{} за время прохождения практики осуществил(а) следующие мероприятия}\wdash[\wul{\phantom{\_}}]{308}\end{wpar}
+\begin{wpar}[\wjustify\wsz{12}{20.70}]\wstretch{Студент(ка) \wulp{\Исполнитель{}} группы \wulp{\Группа{}} института \wulp{\Институт{}} за время прохождения практики осуществил(а) следующие мероприятия}\wdash[\wul{\phantom{\_}}]{308}\end{wpar}
 \begin{wpar}[\wsz{12}{20.70}]В период практики студент(ка)\break \wdash[\wul{\phantom{\_}}]{385}\end{wpar}
 \begin{wpar}[\wcenter\wsz{12}{20.70}]\wsize{8}{(краткая характеристика уровня подготовки и отношения практиканта к работе)}\end{wpar}
 \пусто[\wjustify\wsz{12}{20.70}]
@@ -135,9 +137,11 @@
 \begin{wpar}[\wsz{12}{13.80}]4. Предложения и замечания от организации по теоретической и практической подготовке студентов.\wspaces{2}\wcap{\wulp{\Замечания}}{\wsub{(В свободной форме)}}\end{wpar}
 \пусто[\wsz{12}{13.80}]
 \пусто[\wsz{12}{13.80}]
-\begin{wpar}[\wsz{12}{20.70}]Оценка за практику \hbox{\wul{\phantom{\_\_\_\_\_\_\_}}}\end{wpar}
-\begin{wpar}[\wsz{12}{20.70}]«\_\_\_\_\_\_\_\_\_\_»\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ 20\_\_\_\_г.\end{wpar}
-\begin{wpar}[\wsz{12}{20.70}]Руководитель организации\wspaces{61}(подпись, печать)\_\_\_\end{wpar}
-\begin{wpar}[\wsz{12}{20.70}]\wtab{\wtab{Руководитель практики от организации\wspaces{22}}}\wspaces{1}(подпись)\_\_\_\_\_\_\_\_\_\_\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]Оценка за практику \underline{\hspace{1.5cm}}\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]«\underline{\hspace{15mm}}» \underline{\hspace{40mm}} 20\underline{\hspace{10mm}}г.\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]Руководитель организации\hfill\ПолеПодписи\end{wpar}
+\begin{wpar}[\wsz{8}{9.20}]\hfill\ПояснениеПодписи{(подпись, печать)}\end{wpar}
+\begin{wpar}[\wsz{12}{20.70}]Руководитель практики от организации\hfill\ПолеПодписи\end{wpar}
+\begin{wpar}[\wsz{8}{9.20}]\hfill\ПояснениеПодписи{(подпись)}\end{wpar}
 \пусто[\wspace{0pt}{10pt}\wsz{12}{15.87}]
 \end{document}
